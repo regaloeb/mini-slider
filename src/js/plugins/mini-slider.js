@@ -55,14 +55,15 @@ var MiniSlider = function(selector, options){
     var carouselId = carousel.getAttribute('id');
     var curIndice;
     var nbSlide = carousel.querySelectorAll('.slide').length;
-    var defaultSlide = (plugin.o.activeSlide) ? plugin.o.activeSlide : 0;
-    var curIndex = defaultSlide;
+    var defaultSlide;
+    var curIndex;
     var autoplayInterv = false;
     
 		function initConstructor() {
       plugin.o = Object.assign({}, defaults, options);
       plugin.el.querySelector('.slider').classList.add('active');
-      
+      defaultSlide = (plugin.o.activeSlide) ? plugin.o.activeSlide : 0;
+      curIndex = defaultSlide;
       if(plugin.o.nav) {
         var nav = document.createElement('div');
         nav.classList.add('nav');
