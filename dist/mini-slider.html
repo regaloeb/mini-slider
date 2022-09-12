@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<!--
+		replace An ultra-light Javascript Vanilla Carousel by master regaloeb by final description text
+		replace http://www.regaloeb.com/pages/mini-slider by final production URL
+		replace XXX_thumb_XXX by final production URL of the thumb image for social networks
+		-->
+		<meta charset="utf-8">
+		<title>Ultra-light Carousel by regaloeb</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+				
+		<link href="css/styles.css" rel="stylesheet" type="text/css">
+		
+		<meta name="description" content="An ultra-light Javascript Vanilla Carousel by master regaloeb">
+		<meta property="og:title" content="Ultra-light Carousel">
+		<meta property="og:description" content="An ultra-light Javascript Vanilla Carousel by master regaloeb">
+		<meta property="og:image" content="XXX_thumb_XXX">
+		<meta property="og:site_name" content="regaloeb.com">
+		<meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+		<meta property="fb:app_id" content="XXX_fb_id_XXX">
+		<meta property="og:url" content="http://www.regaloeb.com/pages/mini-slider">
+		
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="regaloeb">
+    <meta name="twitter:dnt" content="on">
+		
+    <meta name="format-detection" content="telephone=no">
+    
+		<link rel="canonical" href="http://www.regaloeb.com/pages/mini-slider">
+
+	</head>
+	
+	
+	<body>
+		
+    <main>
+      <h1>Un mini-slider/carousel</h1>
+      <p>
+        Je ne sais pas vous mais moi, quand on me demande de faire une galerie de photos ou d'images simple, ça m'ennuie de charger un plugin de carousel complet, complexe et lourd.<br>
+        Alors, j'ai fait mon propre constructeur vanilla <strong>ultra-light (~7Ko minifié, 14Ko non-minifié).</strong>
+      </p>
+      <p style="margin-bottom:0">
+        <strong>Ultra-light en poids = un peu moins de fonctionnalités&nbsp;!</strong>
+      </p>
+      <ul>
+        <li>Pas de choix dans les transitions (forcément slide horizontal - pour l'instant&nbsp;!);</li>
+        <li>Forcément infinite-loop (pour l'instant&nbsp;!);</li>
+        <li>Une seule diapo visible (pour toujours&nbsp;!);</li>
+      </ul>
+      <h2>Fonctionnalités disponibles</h2>
+      <ul>
+        <li>
+          <strong>Boutons prev/next</strong>&nbsp;: par défaut;
+        </li>
+        <li>
+          <strong>Déplacement par balaiement du doigt sur mobiles</strong>&nbsp;: par défaut;
+        </li>
+        <li>
+          <strong>Navigation/pagination</strong>&nbsp;: facultatif (voir data-attributes);
+        </li>
+        <li>
+          <strong>Déplacement par scroll horizontal avec deux doigts sur le pad d'un ordi portable et par molette de souris</strong>&nbsp;: facultatif (voir data-attributes);
+        </li>
+        <li>
+          <strong>Autoplay</strong>&nbsp;: facultatif (voir data-attributes);
+        </li>
+        <li>
+          <strong>Fonctions publiques</strong>&nbsp;: on peut déclencher prev/next, gotoSlide, destroy et restore depuis l'extérieur.
+        </li>
+      </ul>
+      
+      
+      <h2>Installation</h2>
+      <p>
+        <strong>Charger la CSS</strong> de base dans le header.<br>
+        <a href="../src/scss/components/_mini-slider.scss" download="_mini-slider.scss" target="_blank">Télécharger _mini-slider.scss</a>
+      </p>
+      
+      <p>
+        <strong>Charger le constructeur javascript</strong> avant fermeture du body.<br>
+        <a href="../src/js/plugins/mini-slider.js" download="_mini-slider.scss" target="_blank">Télécharger mini-slider.js</a>
+      </p>
+      
+      <p>
+        <strong>Déclarer les mini-sliders</strong> au onDomLoad par exemple ou après un chargement AJAX&nbsp;:
+      </p>
+        <pre>
+var miniSlider = document.querySelectorAll('.mini-slider');
+if(miniSlider){
+  for(var i=0; i&lt;miniSlider.length; i++){
+    miniSlider[i].miniSlider = new MiniSlider(miniSlider[i]);
+  }
+}
+</pre>
+      <p>
+        En déclarant les mini-sliders de la sorte, on peut à tout moment récupérer l'objet MiniSlider avec la syntaxe suivante (pour appeler les fonctions publiques par ex - voir plus bas)&nbsp;:
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.nextSlide();</pre>
+      
+      
+      <h2>Structure HTML requise</h2>
+      <pre>
+&lt;div <strong>class="mini-slider"</strong>>
+  &lt;div <strong>class="slider"</strong>>
+    &lt;ul <strong>class="slider-carousel"</strong>>
+      &lt;li <strong>class="slide"</strong>>
+        Ce qu'on veut comme contenu !
+        Mais des &lt;img class="full" prendront tout l'espace disponible en largeur
+        et centrés en hauteur.
+        Après tout, ce plugin est destiné aux diaporamas !
+        Les &lt;li> sont en position:relative.
+        Un &lt;div class="content"> aura par défaut une position absolute 
+        (width et height: 100%; top et left: 0).
+      &lt;/li> 
+      etc.
+    &lt;/ul>
+  &lt;/div>
+&lt;/div></pre>
+      <h3>data-attributes</h3>
+      <ul>
+        <li><strong>data-wheel&nbsp;:</strong> 1 pour activer molette et les deux doigts sur un pad, absent ou 0 pour ne pas activer.</li>
+        <li><strong>data-nav&nbsp;:</strong> 1 pour afficher la navigation "bullets", absent ou 0 pour ne pas activer.</li>
+        <li><strong>data-slide&nbsp;:</strong> number, pour aller directement à la slide correspondante (valeur 0 pour la première).</li>
+        <li><strong>data-autoplay&nbsp;:</strong> 1 pour activer autoplay, absent ou 0 pour ne pas activer. Lorsque actif, l'autoplay est mis en pause au survol du slider et supprimé dès qu'on clique sur prev/next/bullet.</li>
+        <li style="list-style:none; margin-left:2rem"><strong>data-autoplay-tempo&nbsp;:</strong> number, tempo entre chaque défilement en millisecondes (4000 par défaut si pas saisi).</li>
+      </ul>
+      <h2>Structure HTML finale</h2>
+      <p>
+        Le plugin rajoute des éléments au DOM&nbsp;:<br>
+        boutons prev, next, navigation, ID unique, data-index à chaque slide, largeur du .slider, classe .active au slider, aria attributes&nbsp;:
+      </p>
+      <pre>
+&lt;div class="mini-slider">
+  &lt;div class="slider <strong>active</strong>">
+    &lt;ul class="slider-carousel" <strong>id="slider-l7yiz2r21kc8zuju4" style="width: 900%;"</strong>>
+      &lt;li class="slide" <strong>data-index="0"</strong>>
+        &lt;img src="img/rock-loeb_01.jpg" alt="" class="full">
+      &lt;/li>
+      &lt;li class="slide" <strong>data-index="1"</strong>>
+        &lt;img src="img/rock-loeb_02.jpg" alt="" class="full">
+      &lt;/li>
+      etc.
+    &lt;/ul>
+  &lt;/div>
+  <strong>&lt;div class="nav" aria-label="Carousel navigation">
+    &lt;button class="nav-item" data-index="0" aria-controls="slider-l7yiz2r21kc8zuju4" aria-label="Carousel page 1">&lt;/button>
+  etc.
+  &lt;/div>
+  &lt;button class="arrow prev" aria-controls="slider-l7yiz2r21kc8zuju4">&lt;/button>
+  &lt;button class="arrow next" aria-controls="slider-l7yiz2r21kc8zuju4">&lt;/button></strong>
+&lt;/div></pre>
+
+
+      <h2>CSS</h2>
+      <p>
+        Les styles de base sont contenus dans le fichier <strong>/src/scss/components/_mini-slider.scss</strong>
+      </p>
+      <p>
+        Chaque éléments peut bien sûr être modifié dans vos fichiers CSS, en voici la liste&nbsp;:
+      </p>
+      <ul style="list-style:none;">
+        <li><strong>.mini-slider&nbsp;:</strong> conteneur principal, nom de classe obligatoire.</li>
+        <li><strong>&nbsp;&nbsp;.slider&nbsp;:</strong> conteneur du slider, nom de classe obligatoire.</li>
+        <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;.slider-carousel&nbsp;:</strong> l'élément qui se déplace de gauche à droite et vice-versa, nom de classe obligatoire.</li>
+        <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.slide&nbsp;:</strong> chaque slide, nom de classe obligatoire.</li>
+        <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;img.full&nbsp;:</strong> image pleine largeur.</li>
+        <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.content&nbsp;:</strong> contenu en absolute par-dessus l'image.</li>
+        <li><strong>&nbsp;&nbsp;.nav&nbsp;:</strong> la navigation "bullet".</li>
+        <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;.nav-item&nbsp;:</strong> chaque "bullet"</li>
+        <li><strong>&nbsp;&nbsp;.arrow&nbsp;:</strong> les flèches (de base, de simples carrés noirs à gauche et à droite à l'extérieur du slider en desktop et des ronds à l'intérieur pour mobiles.<br>
+        <strong>&nbsp;&nbsp;&.prev</strong> pour précédent<br>
+        <strong>&nbsp;&nbsp;&.next</strong> pour suivant</li>
+      </ul>
+      
+      
+      <h2>Fonctions publiques</h2>
+      <p>
+        <strong>Passer à la slide suivante&nbsp;:</strong>
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.nextSlide();</pre>
+      <p>
+        <strong>Revenir à la slide précédente&nbsp;:</strong>
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.prevSlide();</pre>
+      <p>
+        <strong>Aller à la slide N&nbsp;:</strong>
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.gotoSlide(N-1);</pre>
+      <p>
+        <strong>Destroy le plugin&nbsp;:</strong>
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.destroy();</pre>
+      <p>
+        <strong>Restaurer le plugin après un destroy&nbsp;:</strong>
+      </p>
+        <pre>
+document.querySelector(ELT).miniSlider.restore();</pre>
+      
+      
+      <h2>Exemple</h2>
+      <div class="mini-slider" id="miniSlider" data-wheel="1" data-nav="1" data-autoplay="1" data-autoplay-tempo="5000">
+        <div class="slider">
+          <ul class="slider-carousel">
+            <li class="slide">
+              <img src="img/rock-loeb_02.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_03.jpg" alt="" class="full">
+              <div class="content">
+                <p>div.content</p>
+              </div>
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_04.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_06.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_07.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_08.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/rock-loeb_10.jpg" alt="" class="full">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin: 5rem 0;">
+        <h2>Fonctions Publiques en action</h2>
+        <a href="#" id="slidePrev">Prev</a><br>
+        <a href="#" id="slideNext">Next</a><br>
+        <a href="#" id="gotoSlide">Go to slide 3</a><br>
+        <a href="#" id="destroy">Destroy</a><br>
+        <a href="#" id="restore">Restore</a><br>
+      </div>
+    </main>
+		<script src="javascripts/plugins.js"></script>
+		<script src="javascripts/XXL.js"></script>
+		<script src="javascripts/general.js"></script>
+    <script>
+
+    //------------DOMLOAD		
+    document.addEventListener("DOMContentLoaded", function () {
+      //miniSliders
+      var miniSlider = document.querySelectorAll('.mini-slider');
+      if(miniSlider){
+        for(var i=0; i<miniSlider.length; i++){
+          miniSlider[i].miniSlider = new MiniSlider(miniSlider[i]);
+        }
+      }
+      
+      document.querySelector('#slidePrev').addEventListener('click', function() {
+        document.querySelector('#miniSlider').miniSlider.prevSlide();
+      });
+      document.querySelector('#slideNext').addEventListener('click', function() {
+        document.querySelector('#miniSlider').miniSlider.nextSlide();
+      });
+      document.querySelector('#gotoSlide').addEventListener('click', function() {
+        document.querySelector('#miniSlider').miniSlider.gotoSlide(2);
+      });
+      document.querySelector('#destroy').addEventListener('click', function() {
+        document.querySelector('#miniSlider').miniSlider.destroy();
+      });
+      document.querySelector('#restore').addEventListener('click', function() {
+        document.querySelector('#miniSlider').miniSlider.restore();
+      });
+    });
+    </script>
+	</body>
+</html>

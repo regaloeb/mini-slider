@@ -1,0 +1,203 @@
+/*
+ * Sections attributes
+ */
+//$maxWidthSection: 1440px;
+//$maxWidthSectionHome: 1440px;
+
+$maxWidthSection: 74.375em; //1190px;
+$maxWidthSectionSmaller: 988px;
+
+$sectionPadding: 2.5rem;
+$sectionPaddingMobile: 1.6rem;
+$maxWidth: 1600px;
+$headerHeight: 7rem;
+$headerHeightDesktop: 9.5rem;
+$headerHeightScrolled: 9.5rem;
+$headerHeightMobile: 7rem;
+$headerHeightMobileScrolled: 7rem;
+
+/*
+ * Durations
+ */
+$speed: 1s;
+$speed1: 0.6s;
+$speed2: 0.3s;
+$speed3: 0.15s;
+
+/*
+ * Colors
+ */
+$black: #000000;
+$white: #ffffff;
+$grey: #cecaca;
+$greyLight: #F0EFEB;
+$greyLighter: #F2F2F2;
+$greyDark: #898990;
+$red: #FA4616;  
+$blue: #0254FF;
+$blueDark: #002166;
+$blueLight: #2972FF;
+$green: #0AB81B;
+$orange: #FF5F01;
+$rose: #FF154D;
+
+/*
+$greyLighter: #D9D9D9;
+$greyDark: #666666;
+$greenDark: #025952;
+$greenLight: #7BE1BC;
+
+$yellow: #FFDE67;
+$yellowPale: #FFEBA6;
+
+$cream: #F7F1ED; //page bg
+
+$vermillon: #EB4C00;
+$blueDark: #0B112E;
+$grey: #9EA6A1;
+*/
+$primary: #2c016b;
+$primaryDark: #190E43;
+$primaryLight: #72509F;
+$primarySoft: #D2BFE8;
+$primaryUltraSoft: #F2ECF8;
+$complementary: #C7B7B3;
+$complementaryDark: #A8918A;
+$complementaryLight: #DDD2CE;
+$complementarySoft: #EAE3E1;
+$complementaryUltraSoft: #F5F1F0;
+$secondary: #5CDA94;
+$secondaryDark: #00A86B;
+$secondaryLight: #75E8B1;
+$secondarySoft: #CDF6E1;
+$secondaryUltraSoft: #E9FBF2;
+$grey: #98949E;
+$greyDark: #58555E;
+$greyLight: #ACA9B2;
+$greySoft: #E0DFE2;
+$greyUltraSoft: #F2F2F3;
+
+$navHighlight: $greyDark;                           
+$highlight: $secondaryDark;
+$colorText: $primary;
+$colorTextLink: $blue;
+
+$colorLinks: $blue;
+$btnBgColor: $red;
+
+$transpa-bg: rgba(0,0,0,0.65); 
+
+$maskBg: rgba($black, 0.95);
+ 
+
+/*
+ * Miscellaneous
+ */
+$borderRadius: 0;
+$borderRadiusBtn-desktop: 0;
+$borderRadiusBtn-mobile: 0;
+$defaultRadius: 0;
+$defaultFontSize: 1.6rem;
+$defaultMobileFontSize: 1.6rem;
+$defaultEase: $easeInOutQuad;
+
+$homePaddingTop: 16rem;
+$homeHeaderHeight: 13rem;
+
+/*
+ * Breakpoints
+ */
+$mobile-small: 21.875em; //350px;
+$mobile: 41.9375em; //671px;
+$tablet: 48.0625em; //769px;
+$tablet-landscape: 62.75em; //1004px;
+$desktop: 64em; //1024px;
+$desktop-large: 80.0625em; //1281px;
+
+
+@mixin regal-media-mobile-small() {
+  @media (max-width: $mobile-small) {
+    @content;
+  }
+}
+@mixin regal-media-mobile(){
+  @media (max-width: $desktop - .0625em){
+    @content;
+  }
+}
+@mixin regal-media-desktop(){
+  @media (min-width: $desktop){
+    @content;
+  }
+}
+/*
+@mixin regal-media-tablet-vertical(){
+  @media (min-width: $mobile) and (max-width: $tablet-landscape - .0625em){
+    @content;
+  }
+}
+@mixin regal-media-mobile-tablet-vertical(){
+  @media (max-width: $tablet-landscape - .0625em){
+    @content;
+  }
+}
+@mixin regal-media-no-mobile(){
+  @media (min-width: $mobile){
+    @content;
+  }
+}
+@mixin regal-media-no-mobile-no-tablet-vertical(){
+  @media (min-width: $tablet-landscape){
+    @content;
+  }
+}
+@mixin regal-media-desktop(){
+  @media (min-width: $desktop){
+    @content;
+  }
+}
+@mixin regal-media-desktop-large(){
+  @media (min-width: $desktop-large){
+    @content;
+  }
+}
+*/
+
+/* old breakpoints ////////// TODO: suppr when finished */
+$mobile-phone-small: 21.875em; //350px;
+$mobile-phone: 41.9375em; //671px;
+$tablet-width: 48.0625em; //769px;
+$tablet-portrait: 62.75em; //1004px;
+$desktop-width: 64em; //1024px;
+$large-width: 80.0625em; //1281px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$large-width - 1px}) {
+    @content;
+  }
+}
+@mixin large {
+  @media (min-width: #{$large-width}) {
+    @content;
+  }
+}
+@mixin desktop-to-large {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin tablet-to-large {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+@mixin tablet-portrait-to-large {
+  @media (min-width: #{$tablet-portrait}) {
+    @content;
+  }
+}

@@ -1,0 +1,72 @@
+main {
+  width: 100%;
+  max-width: 80rem;
+  margin: auto;
+  @include regal-media-mobile {
+    padding: 2.5rem;
+  }
+}
+
+
+pre {
+  background: $greyLighter;
+  padding: 1.6rem;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  margin-bottom: 3rem;
+}
+
+p + pre {
+  margin-top: -2rem;
+}
+
+.mini-slider {
+  max-width: 60rem;
+  
+  .arrow{
+    border-radius: 50% 0 0 50%;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    border: 0;
+    background: black url(img/slider-arrow-left.svg) no-repeat 50% 50%;
+    
+    &.next {
+      border-radius: 0 50% 50% 0;
+      transform: translate(100%, -50%);
+      background: black url(img/slider-arrow-right.svg) no-repeat 50% 50%;
+    }
+    
+    @include regal-media-mobile {
+      transform: translateY(-50%);
+      border-radius: 50%;
+      left: 1rem;
+      width: 3rem;
+      height: 3rem;
+      
+      &.next {
+        transform: translateY(-50%);
+        border-radius: 50%;
+        right: 1rem;
+      }
+    }
+  }
+  
+  .slider {
+    background: black;
+      
+    li {
+      background: black;
+      
+      .content {
+        color: $white;
+        text-align: center;
+        padding: 2.5rem;
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
