@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<!--
-		replace An ultra-light Javascript Vanilla Carousel by master regaloeb by final description text
-		replace http://www.regaloeb.com/pages/mini-slider by final production URL
-		replace XXX_thumb_XXX by final production URL of the thumb image for social networks
-		-->
 		<meta charset="utf-8">
-		<title>Ultra-light Carousel by regaloeb</title>
+		<title>Ultra-light Diaporama by regaloeb</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 				
 		<link href="css/styles.css" rel="stylesheet" type="text/css">
 		
-		<meta name="description" content="An ultra-light Javascript Vanilla Carousel by master regaloeb">
-		<meta property="og:title" content="Ultra-light Carousel">
-		<meta property="og:description" content="An ultra-light Javascript Vanilla Carousel by master regaloeb">
-		<meta property="og:image" content="XXX_thumb_XXX">
+		<meta name="description" content="An ultra-light Javascript Vanilla Diaporama by master regaloeb">
+    
+		<meta property="og:url" content="http://www.regaloeb.com/pages/mini-slider/mini-slider.html">
+		<meta property="og:title" content="Ultra-light Diaporama">
+		<meta property="og:description" content="An ultra-light Javascript Vanilla Diaporama by master regaloeb">
+		<meta property="og:image" content="http://www.regaloeb.com/pages/mini-slider/regaloeb-nation-fb-thumb.png">
+    
 		<meta property="og:site_name" content="regaloeb.com">
 		<meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
-		<meta property="fb:app_id" content="XXX_fb_id_XXX">
-		<meta property="og:url" content="http://www.regaloeb.com/pages/mini-slider">
-		
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:site" content="regaloeb">
-    <meta name="twitter:dnt" content="on">
-		
+			
     <meta name="format-detection" content="telephone=no">
     
-		<link rel="canonical" href="http://www.regaloeb.com/pages/mini-slider">
+		<link rel="canonical" href="http://www.regaloeb.com/pages/mini-slider/mini-slider.html">
 
 	</head>
 	
@@ -36,19 +28,23 @@
 	<body>
 		
     <main>
-      <h1>Un mini-slider/carousel</h1>
+      
+      
+      <h1>Un mini-slider/diaporama</h1>
       <p>
         Je ne sais pas vous mais moi, quand on me demande de faire une galerie de photos ou d'images simple, ça m'ennuie de charger un plugin de carousel complet, complexe et lourd.<br>
-        Alors, j'ai fait mon propre constructeur vanilla <strong>ultra-light (~7Ko minifié, 14Ko non-minifié).</strong>
+        Alors, j'ai fait mon propre constructeur vanilla <strong>ultra-light (~9Ko minifié, 18Ko non-minifié).</strong>
       </p>
       <p style="margin-bottom:0">
         <strong>Ultra-light en poids = un peu moins de fonctionnalités&nbsp;!</strong>
       </p>
-      <ul>
-        <li>Pas de choix dans les transitions (forcément slide horizontal - pour l'instant&nbsp;!);</li>
+      <ul style="margin-bottom:3rem">
         <li>Forcément infinite-loop (pour l'instant&nbsp;!);</li>
-        <li>Une seule diapo visible (pour toujours&nbsp;!);</li>
+        <li>Une seule diapo visible (pour toujours...&nbsp;!);</li>
       </ul>
+      <p>
+        <strong>Ce mini-slider n'a pas pour vocation de remplacer les <a href="https://flickity.metafizzy.co/" target="_blank">Flickity</a>, <a href="https://kenwheeler.github.io/slick/" target="_blank">Slick</a> ou autre <a href="http://ganlanyuan.github.io/tiny-slider/demo/" target="_blank">Tiny-slider</a> (qui a ma préférence en ce moment) mais juste de faire des diaporamas simples et légers.</strong>
+      </p>
       <h2>Fonctionnalités disponibles</h2>
       <ul>
         <li>
@@ -61,10 +57,16 @@
           <strong>Navigation/pagination</strong>&nbsp;: facultatif (voir data-attributes);
         </li>
         <li>
-          <strong>Déplacement par scroll horizontal avec deux doigts sur le pad d'un ordi portable et par molette de souris</strong>&nbsp;: facultatif (voir data-attributes);
+          <strong>Déplacement par scroll horizontal avec deux doigts sur le pad d'un ordi portable</strong>&nbsp;: facultatif (voir data-attributes);
+        </li>
+        <li>
+          Déplacement par molette de souris</strong>&nbsp;: facultatif (voir data-attributes);
         </li>
         <li>
           <strong>Autoplay</strong>&nbsp;: facultatif (voir data-attributes);
+        </li>
+        <li>
+          <strong>Transition Fade</strong>&nbsp;: facultatif, déplacement horizontal par défaut (voir data-attributes);
         </li>
         <li>
           <strong>Fonctions publiques</strong>&nbsp;: on peut déclencher prev/next, gotoSlide, destroy et restore depuis l'extérieur.
@@ -75,12 +77,12 @@
       <h2>Installation</h2>
       <p>
         <strong>Charger la CSS</strong> de base dans le header.<br>
-        <a href="../src/scss/components/_mini-slider.scss" download="_mini-slider.scss" target="_blank">Télécharger _mini-slider.scss</a>
+        <a href="src/scss/components/_mini-slider.scss" download="_mini-slider.scss" target="_blank">Télécharger _mini-slider.scss</a>
       </p>
       
       <p>
         <strong>Charger le constructeur javascript</strong> avant fermeture du body.<br>
-        <a href="../src/js/plugins/mini-slider.js" download="_mini-slider.scss" target="_blank">Télécharger mini-slider.js</a>
+        <a href="src/js/plugins/mini-slider.js" download="mini-slider.js" target="_blank">Télécharger mini-slider.js</a>
       </p>
       
       <p>
@@ -121,11 +123,16 @@ document.querySelector(ELT).miniSlider.nextSlide();</pre>
 &lt;/div></pre>
       <h3>data-attributes</h3>
       <ul>
-        <li><strong>data-wheel&nbsp;:</strong> 1 pour activer molette et les deux doigts sur un pad, absent ou 0 pour ne pas activer.</li>
+        <li><strong>data-wheel&nbsp;:</strong> 1 pour activer molette souris, absent ou 0 pour ne pas activer.</li>
+        <li><strong>data-pad&nbsp;:</strong> 1 pour activer les deux doigts sur un pad, absent ou 0 pour ne pas activer.</li>
         <li><strong>data-nav&nbsp;:</strong> 1 pour afficher la navigation "bullets", absent ou 0 pour ne pas activer.</li>
         <li><strong>data-slide&nbsp;:</strong> number, pour aller directement à la slide correspondante (valeur 0 pour la première).</li>
-        <li><strong>data-autoplay&nbsp;:</strong> 1 pour activer autoplay, absent ou 0 pour ne pas activer. Lorsque actif, l'autoplay est mis en pause au survol du slider et supprimé dès qu'on clique sur prev/next/bullet.</li>
+        <li><strong>data-autoplay&nbsp;:</strong> 1 pour activer autoplay, absent ou 0 pour ne pas activer.<br>
+        L'autoplay n'est déclenché que lorsque le slider est visible et mis en pause lorsqu'il n'est pas visible.<br>
+        Il est mis en pause au survol du slider.<br>
+        Et supprimé dès qu'on clique sur prev/next/bullet.</li>
         <li style="list-style:none; margin-left:2rem"><strong>data-autoplay-tempo&nbsp;:</strong> number, tempo entre chaque défilement en millisecondes (4000 par défaut si pas saisi).</li>
+        <li><strong>data-fade&nbsp;:</strong> 1, pour activer transition fade, absent ou 0 pour ne pas activer.</li>
       </ul>
       <h2>Structure HTML finale</h2>
       <p>
@@ -152,8 +159,29 @@ document.querySelector(ELT).miniSlider.nextSlide();</pre>
   &lt;button class="arrow prev" aria-controls="slider-l7yiz2r21kc8zuju4">&lt;/button>
   &lt;button class="arrow next" aria-controls="slider-l7yiz2r21kc8zuju4">&lt;/button></strong>
 &lt;/div></pre>
-
-
+      
+      <p>
+        Pour la version Fade, on <strong>clone chaque slide</strong> en plus et on rajoute la classe <strong>.fade au .slider-carousel</strong>&nbsp;:<br>
+      </p>
+      <pre>
+&lt;div class="mini-slider">
+  &lt;div class="slider active">
+    &lt;ul class="slider-carousel <strong>fade</strong>" id="slider-l800i7x92e9wnkf7i" style="width: 700%;">
+      &lt;li class="slide" data-index="0" style="visibility: hidden;">
+        &lt;img src="img/rock-loeb_02.jpg" alt="" class="full">
+      &lt;/li>
+      etc.<strong>
+      &lt;li class="slide slide-fade" data-index="0" style="width: 14.2857%;">
+        &lt;img src="img/rock-loeb_02.jpg" alt="" class="full">
+      &lt;/li>
+      etc.</strong>
+    &lt;/ul>
+  &lt;/div>
+&lt;/div></pre>
+      <p>
+        Les slide originaux sont conservés et uniquement masqués avec un visibility:hidden pour que <strong>.slider-carousel conserve la bonne hauteur</strong> puisque les .slide-fade sont en position absolute.
+      </p>
+      
       <h2>CSS</h2>
       <p>
         Les styles de base sont contenus dans le fichier <strong>/src/scss/components/_mini-slider.scss</strong>
@@ -205,7 +233,10 @@ document.querySelector(ELT).miniSlider.restore();</pre>
       
       
       <h2>Exemple</h2>
-      <div class="mini-slider" id="miniSlider" data-wheel="1" data-nav="1" data-autoplay="1" data-autoplay-tempo="5000">
+      <p>
+        Transition par défaut, navigation-bullet, autoplay et pad activés.
+      </p>
+      <div class="mini-slider" id="miniSlider" data-pad="1" data-nav="1" data-autoplay="1" data-autoplay-tempo="5000">
         <div class="slider">
           <ul class="slider-carousel">
             <li class="slide">
@@ -243,6 +274,76 @@ document.querySelector(ELT).miniSlider.restore();</pre>
         <a href="#" id="destroy">Destroy</a><br>
         <a href="#" id="restore">Restore</a><br>
       </div>
+      
+      
+      <h2>Exemple transition Fade</h2>
+      <p>
+        Transition Fade, autoplay.
+      </p>
+      <div class="full-width">
+        <div class="mini-slider" id="miniSlider2" data-autoplay="1" data-autoplay-tempo="3000" data-fade="1">
+          <div class="slider">
+            <ul class="slider-carousel">
+              <li class="slide">
+                <img src="img/affiches-01.jpg" alt="" class="full">
+              </li>
+              <li class="slide">
+                <img src="img/affiches-02.jpg" alt="" class="full">
+              </li>
+              <li class="slide">
+                <img src="img/affiches-03.jpg" alt="" class="full">
+              </li>
+              <li class="slide">
+                <img src="img/affiches-04.jpg" alt="" class="full">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="margin: 5rem 0;">
+        <h2>Fonctions Publiques en action</h2>
+        <a href="#" id="slidePrev2">Prev</a><br>
+        <a href="#" id="slideNext2">Next</a><br>
+        <a href="#" id="gotoSlide2">Go to slide 3</a><br>
+        <a href="#" id="destroy2">Destroy</a><br>
+        <a href="#" id="restore2">Restore</a><br>
+      </div>
+      
+      
+      
+      <!--
+      <h2>Exemple 2 slides visibles</h2>
+      <p>
+        Pas encore 100% fini.<br>
+        Pour l'instant, il vaut mieux masquer la navigation bullet&nbsp;!
+      </p>
+      <div class="mini-slider" id="miniSlider-2slides" data-wheel="1" data-nav="1" data-visible-slides="2">
+        <div class="slider">
+          <ul class="slider-carousel">
+            <li class="slide">
+              <img src="img/cendar-01.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/cendar-02.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/cendar-03.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/cendar-04.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/cendar-05.jpg" alt="" class="full">
+            </li>
+            <li class="slide">
+              <img src="img/cendar-06.jpg" alt="" class="full">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p></p>
+      -->
+      <p>Voilà, c'est tout.</p>
     </main>
 		<script src="javascripts/plugins.js"></script>
 		<script src="javascripts/XXL.js"></script>
@@ -274,6 +375,23 @@ document.querySelector(ELT).miniSlider.restore();</pre>
       document.querySelector('#restore').addEventListener('click', function() {
         document.querySelector('#miniSlider').miniSlider.restore();
       });
+      
+      document.querySelector('#slidePrev2').addEventListener('click', function() {
+        document.querySelector('#miniSlider2').miniSlider.prevSlide();
+      });
+      document.querySelector('#slideNext2').addEventListener('click', function() {
+        document.querySelector('#miniSlider2').miniSlider.nextSlide();
+      });
+      document.querySelector('#gotoSlide2').addEventListener('click', function() {
+        document.querySelector('#miniSlider2').miniSlider.gotoSlide(2);
+      });
+      document.querySelector('#destroy2').addEventListener('click', function() {
+        document.querySelector('#miniSlider2').miniSlider.destroy();
+      });
+      document.querySelector('#restore2').addEventListener('click', function() {
+        document.querySelector('#miniSlider2').miniSlider.restore();
+      });
+      
     });
     </script>
 	</body>
