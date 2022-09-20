@@ -132,10 +132,10 @@ var MiniSlider = function(selector, options){
       plugin.el.addEventListener('touchstart', touchStart, supportsPassive ? { passive: true } : false);
       
       if(plugin.o.autoplay) {
-        autoplayInterv = setInterval(autoplay, plugin.o.autoplayTempo);
+        //autoplayInterv = setInterval(autoplay, plugin.o.autoplayTempo);
+        observer = XLObserver(plugin.el, playPauseAutoplay, .1, 0); // this sets the autoplay interval
         plugin.el.addEventListener('mouseover', autoplayPause);
         plugin.el.addEventListener('mouseout', autoplayPlay);
-        observer = XLObserver(plugin.el, playPauseAutoplay, .1, 0);
       }
     };
     function playPauseAutoplay(elt, on, from){
